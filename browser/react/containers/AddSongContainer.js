@@ -13,6 +13,7 @@ class AddSongContainer extends React.Component {
       error: false
       }
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.props.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -36,11 +37,14 @@ class AddSongContainer extends React.Component {
         error={error}
         songId={songId}
         handleChange={this.handleChange}
-        handleSubmit={this.props.handleSubmit.bind(this)}/>
+        //handleSubmit={this.props.handleSubmit.bind(this)}/>
+        handleSubmit={this.handleSubmit}/>
     );
   }
 }
 
+//######## BEGIN REACT-REDUX CONNECT SECTION
+//########################################## 
 function mapStateToProps (state) {
   const playlistId = state.playlists.selected.id;
   return {songs: state.songs, playlistId};
@@ -65,3 +69,6 @@ function mapDispatchToProps (dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(AddSongContainer);
+
+//########################################## 
+//######## END REACT-REDUX CONNECT SECTION
