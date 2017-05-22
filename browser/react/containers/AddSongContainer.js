@@ -42,20 +42,19 @@ class AddSongContainer extends React.Component {
 }
 
 function mapStateToProps (state) {
-  console.log('wth.... ', state);
-   const playlistId = AddSongContainer.state.playlists.selected.id;
-  return {songs: state.songs, playlists: playlistId};
+  const playlistId = state.playlists.selected.id;
+  return {songs: state.songs, playlistId};
 }
 
 function mapDispatchToProps (dispatch) {
-   function handleSubmit(evt) {
 
+   function handleSubmit(evt) {
     evt.preventDefault();
 
-    const songId = AddSongContainer.state.songId;
+    const playlistId = this.props.playlistId;
+    const songId = this.state.songId;
     dispatch(addSongToPlaylist(playlistId, songId))
-      .catch(() => AddSongContainer.setState({ error: true }));
-
+      .catch(() => this.setState({ error: true }));
   }
 
   function loadSong() {
