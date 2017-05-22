@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, hashHistory, IndexRedirect} from 'react-router';
+import {Router, Route, browserHistory, IndexRedirect, IndexRoute} from 'react-router';
 
 import AlbumsContainer from './containers/AlbumsContainer';
 import AlbumContainer from './containers/AlbumContainer';
@@ -59,7 +59,7 @@ const onStationsEnter = function (nextRouterState) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
       <Route path="/" component={App} onEnter={onAppEnter}>
 	<Route path="/albums" component={AlbumsContainer}/>
 	<Route path="/albums/:albumId" component={AlbumContainer} onEnter={onAlbumEnter}/>
@@ -72,7 +72,7 @@ ReactDOM.render(
 	<Route path="/playlists/:playlistId" component={PlaylistContainer} onEnter={onPlaylistEnter}/>
 	<Route path="/lyrics" component={LyricsContainer} />
 	<Route path="/stations" component={StationsContainer} onEnter={onStationsEnter}/>
-	<Route path="/stations/:genreName" component={StationContainer} />
+	<Route path="/stations/:genreName" component={StationContainer} onEnter={onStationsEnter} />
 	<IndexRedirect to="/albums"/>
       </Route>
     </Router>

@@ -12,7 +12,6 @@ export default function Stations (props) {
   */
   const STATIONS_DATA = props.stations;
 
-  console.log("Stations:",props);
 
   return (
     <div>
